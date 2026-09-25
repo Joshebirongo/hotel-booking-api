@@ -11,6 +11,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 // Middleware for logging HTTP requests
 import morgan from 'morgan';
+// Function to test database connection
+import { testConnection } from './libraries/DBConnection.js';
 // Import the IP address and port from the network configuration module
 import { theIPAddress, port } from './libraries/netConfig.js';
 
@@ -35,7 +37,6 @@ api.use(bodyParser.json());
 // Store in the constant the project dirname
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-
 // Immediately Invoked Function Expression (IIFE) to run the server
 (async () => {
   // Await the api to start listening on the specified IP address and port
@@ -44,6 +45,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
     console.log(`Server on port http://${theIPAddress}:${port}`);
   });
 })();
+
+// Test database connection
+// Call the function to ensure the database connection is working
+testConnection();
 
 // Export the API for the use in other files
 export default api;
