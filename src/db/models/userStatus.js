@@ -41,7 +41,9 @@ export const Status = sequelize.define(
       // This field cannot be null
       allowNull: false,
       // By default automatically generate the value
-      defaultValue: DataTypes.NOW
+      defaultValue: DataTypes.NOW,
+      // Database column name
+      field: 'created_at',
     },
     // Last update date
     updatedAt: {
@@ -50,7 +52,9 @@ export const Status = sequelize.define(
       // This field cannot be null
       allowNull: false,
       // By default automatically generate the value
-      defaultValue: DataTypes.NOW
+      defaultValue: DataTypes.NOW,
+      // Database column name
+      field: 'updated_at',
     },
   },
   // Sequelize table configuration
