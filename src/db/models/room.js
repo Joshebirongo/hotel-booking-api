@@ -7,42 +7,42 @@ import { DataTypes } from 'sequelize';
 export const ROOM_TABLE = 'room';
 
 // Define the room model
-export const Room = sequelize.define (
+export const Room = sequelize.define(
   ROOM_TABLE,
-{
-  id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    unique: true,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  number: {
-    type: DataTypes.STRING(10),
-    allowNull: false,
-    unique: true
-  },
-  type: {
-    type : DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: "room_type",
-      key: "id",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      unique: true,
+      autoIncrement: true,
     },
-  },
-  floor: {
-    type: DataTypes.SMALLINT,
-    allowNull: false,
-  },
-  status: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: "room_status",
-      key: "id",
+    number: {
+      type: DataTypes.STRING(10),
+      allowNull: false,
+      unique: true,
     },
-  },
-  createdAt: {
+    type: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'room_type',
+        key: 'id',
+      },
+    },
+    floor: {
+      type: DataTypes.SMALLINT,
+      allowNull: false,
+    },
+    status: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'room_status',
+        key: 'id',
+      },
+    },
+    createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
@@ -54,11 +54,11 @@ export const Room = sequelize.define (
       defaultValue: DataTypes.NOW,
       field: 'updated_at',
     },
-},
-{
-  sequelize,
-  tableName: ROOM_TABLE,
-  modelName: 'room',
-  timestamps: true,
-}
+  },
+  {
+    sequelize,
+    tableName: ROOM_TABLE,
+    modelName: 'room',
+    timestamps: true,
+  }
 );

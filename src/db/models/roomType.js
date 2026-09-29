@@ -28,18 +28,21 @@ export const RoomType = sequelize.define(
     },
     pricePerNight: {
       type: DataTypes.DECIMAL(10, 2),
-      validate : {
-        min: 15,
-      },
+      allowNull: false,
       field: 'price_per_night',
+      validate: {
+        min: 10,
+        max: 10000,
+      },
     },
     maxOccupancy: {
       type: DataTypes.SMALLINT,
       allowNull: false,
+      field: 'max_occupancy',
       validate: {
         min: 1,
+        max: 10,
       },
-      field: 'max_occupancy',
     },
     amenities: {
       type: DataTypes.JSONB,
