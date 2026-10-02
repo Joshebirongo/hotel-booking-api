@@ -8,19 +8,19 @@ module.exports = {
       'phone',
       {
         id: {
-          type: DataTypes.INTEGER,
+          type: Sequelize.INTEGER,
           allowNull: false,
           primaryKey: true,
           unique: true,
           autoIncrement: true,
         },
         number: {
-          type: DataTypes.STRING(20),
+          type: Sequelize.STRING(20),
           allowNull: false,
           unique: true
         },
         user: {
-          type: DataTypes.INTEGER,
+          type: Sequelize.INTEGER,
           allowNull: false,
           references: {
           model: 'user',
@@ -30,12 +30,12 @@ module.exports = {
           onUpdate: 'CASCADE',
         },
         created_at: {
-          type: DataTypes.DATE,
+          type: Sequelize.DATE,
           allowNull: false,
           defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
         updated_at: {
-          type: DataTypes.DATE,
+          type: Sequelize.DATE,
           allowNull: false,
           defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },

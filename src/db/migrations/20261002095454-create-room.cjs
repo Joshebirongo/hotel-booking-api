@@ -1,7 +1,7 @@
 'use strict';
 
 const { default: lib } = require('pg-hstore');
-const { DataTypes } = require('sequelize/lib/data-types');
+const { Sequelize } = require('sequelize/lib/data-types');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -11,19 +11,19 @@ module.exports = {
       'room',
       {
         id: {
-          type: DataTypes.INTEGER,
+          type: Sequelize.INTEGER,
           allowNull: false,
           primaryKey: true,
           unique: true,
           autoIncrement: true,
         },
         number: {
-          type: DataTypes.STRING(10),
+          type: Sequelize.STRING(10),
           allowNull: false,
           unique: true,
         },
         type: {
-          type: DataTypes.INTEGER,
+          type: Sequelize.INTEGER,
           allowNull: false,
           references: {
             model: 'room_type',
@@ -33,11 +33,11 @@ module.exports = {
           onUpdate: 'CASCADE',
         },
         floor: {
-          type: DataTypes.SMALLINT,
+          type: Sequelize.SMALLINT,
           allowNull: false,
         },
         status: {
-          type: DataTypes.INTEGER,
+          type: Sequelize.INTEGER,
           allowNull: false,
           references: {
             model: 'room_status',
@@ -47,12 +47,12 @@ module.exports = {
           onUpdate: 'CASCADE',
         },
         created_at: {
-          type: DataTypes.DATE,
+          type: Sequelize.DATE,
           allowNull: false,
           defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
         updated_at: {
-          type: DataTypes.DATE,
+          type: Sequelize.DATE,
           allowNull: false,
           defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
