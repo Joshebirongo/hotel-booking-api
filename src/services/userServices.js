@@ -395,6 +395,37 @@ export class UserService {
     }
   }
 
+  /**
+   * Retrieves every user, ordered by id ascending, embedding each
+   * user's foreign-key catalog records as nested `{ id, name }` objects.
+   *
+   * @async
+   * @returns {Promise<{total: number, records: Object[]}>} An object
+   * containing the count of records returned by this request and the list
+   * itself, so the controller can surface `total` alongside the collection.
+   * @throws {Boom} Throws a wrapped Boom error if the lookup fails.
+   */
+  async listAll() {
+
+    try {
+      const allUsers = await User.findAll({
+        order: [['id', 'ASC']],
+        include: UserService.CATALOG_INCLUDES,
+      });
+
+      const records = allUsers.map(UserService._formatUser);
+
+      return {
+        status: 'USERS FOUND SUCCESSFULLY',
+        total: records.length,
+        usersData: records,
+      };
+
+    } catch (err) {
+      throw Boom.boomify(err, { message: 'Unable to find users' });
+    }
+  }
+
   // ---------------------------------------------------------------------------
   // STATIC UTILITIES
   // ---------------------------------------------------------------------------
