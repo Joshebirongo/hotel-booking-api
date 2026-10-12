@@ -349,6 +349,52 @@ export class UserService {
     }
   }
 
+  /**
+   * Retrieves a single user by email, embedding its foreign-key catalog
+   * records (role, user status) as nested `{ id, name }` objects and
+   * attaching the user's phone list.
+   *
+   * Unlike `listOne` and `listAll`, the returned object KEEPS the
+   * `password` hash so the caller (typically the authentication/login
+   * flow) can compare it against a supplied plain-text password. Callers
+   * MUST NOT forward this object to a client response.
+   *
+   * @async
+   * @param {string} email - Email of the user to retrieve.
+   * @returns {Promise<Object>} The formatted user record, including the
+   * password hash.
+   * @throws {Boom} Throws `Boom.badRequest` if no email is provided,
+   * `Boom.notFound` if the user does not exist, or a wrapped Boom error if
+   * the lookup fails.
+   */
+  async findByEmail(email) {
+
+    if(!email) {
+      throw Boom.badRequest('No email provided');
+    }
+
+    try {
+
+      const theUser = await User.findOne({
+        where: { email },
+        include: UserService.CATALOG_INCLUDES,
+      });
+
+      if (!theUser) {
+        throw Boom.notFound('User not found');
+      }
+
+      return {
+        status: 'USER FOUND SUCCESSFULLY',
+        // includePassword: true — this object is for internal auth use only.
+        userData: UserService._formatUser(theUser, { includePassword: false })
+      };
+
+    } catch (err) {
+      throw Boom.boomify(err, { message: 'Unable to find user by email' });
+    }
+  }
+
   // ---------------------------------------------------------------------------
   // STATIC UTILITIES
   // ---------------------------------------------------------------------------

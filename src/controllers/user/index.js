@@ -8,3 +8,4 @@ export { updateUserPhones } from './updatePhones.js';
 export { updateLastLoginUser } from './updateLastLogin.js';
 export { deleteOneUser } from './deleteOne.js';
 export { listOneUser } from './listOne.js';
+export { findByEmailUser } from './findByEmail.js';

@@ -11,7 +11,8 @@ import {
   updateUserPhones,
   updateLastLoginUser,
   deleteOneUser,
-  listOneUser
+  listOneUser,
+  findByEmailUser
 } from '../controllers/user/index.js';
 
 // Create a new Router instance dedicated to the user resource
@@ -54,7 +55,7 @@ userRouter.post(
 );
 
 // -----------------------------------------------------------------------------
-// DELETE /delete → Delete a user
+// DELETE /delete → Delete a user by their identifier
 // Body: User identifier
 // -----------------------------------------------------------------------------
 userRouter.delete(
@@ -63,12 +64,21 @@ userRouter.delete(
 );
 
 // -----------------------------------------------------------------------------
-// POST /list-one → List a user
+// POST /list-one → List a user by their identifier
 // Body: User identifier
 // -----------------------------------------------------------------------------
 userRouter.post(
   '/list-one',
   listOneUser
+);
+
+// -----------------------------------------------------------------------------
+// POST /find-by-email → List a user by their email
+// Body: User identifier
+// -----------------------------------------------------------------------------
+userRouter.post(
+  '/find-by-email',
+  findByEmailUser
 );
 
 export default userRouter;
