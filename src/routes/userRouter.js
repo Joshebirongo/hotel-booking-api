@@ -2,6 +2,8 @@ import { Router } from "express";
 
 // ----------------------------- Middlewares -----------------------------------
 
+// Middleware that verifies the API key sent by the client app
+import { checkAPIkey } from '../middlewares/apiAuthHandler.js';
 // -------------------------- Validator Schema ---------------------------------
 
 // ----------------------------- Controllers -----------------------------------
@@ -25,6 +27,9 @@ const userRouter = Router();
 // -----------------------------------------------------------------------------
 userRouter.post(
   '/create',
+  // Step 1: Verify the API key
+  checkAPIkey,
+  // Step 2: Delegate to the controller
   createOneUser
 );
 
@@ -34,6 +39,9 @@ userRouter.post(
 // -----------------------------------------------------------------------------
 userRouter.put(
   '/update',
+  // Step 1: Verify the API key
+  checkAPIkey,
+  // Step 2: Delegate to the controller
   updateOneUser
 );
 
@@ -43,6 +51,9 @@ userRouter.put(
 // -----------------------------------------------------------------------------
 userRouter.put(
   '/update-phones',
+  // Step 1: Verify the API key
+  checkAPIkey,
+  // Step 2: Delegate to the controller
   updateUserPhones
 );
 
@@ -52,6 +63,9 @@ userRouter.put(
 // -----------------------------------------------------------------------------
 userRouter.post(
   '/update-last-login',
+  // Step 1: Verify the API key
+  checkAPIkey,
+  // Step 2: Delegate to the controller
   updateLastLoginUser
 );
 
@@ -61,6 +75,9 @@ userRouter.post(
 // -----------------------------------------------------------------------------
 userRouter.delete(
   '/delete',
+  // Step 1: Verify the API key
+  checkAPIkey,
+  // Step 2: Delegate to the controller
   deleteOneUser
 );
 
@@ -70,15 +87,21 @@ userRouter.delete(
 // -----------------------------------------------------------------------------
 userRouter.post(
   '/list-one',
+  // Step 1: Verify the API key
+  checkAPIkey,
+  // Step 2: Delegate to the controller
   listOneUser
 );
 
 // -----------------------------------------------------------------------------
 // POST /find-by-email → List a user by their email
-// Body: User identifier
+// Body: User email
 // -----------------------------------------------------------------------------
 userRouter.post(
   '/find-by-email',
+  // Step 1: Verify the API key
+  checkAPIkey,
+  // Step 2: Delegate to the controller
   findByEmailUser
 );
 
@@ -88,6 +111,9 @@ userRouter.post(
 // -----------------------------------------------------------------------------
 userRouter.get(
   '/list-all',
+  // Step 1: Verify the API key
+  checkAPIkey,
+  // Step 2: Delegate to the controller
   listAllUsers
 );
 
