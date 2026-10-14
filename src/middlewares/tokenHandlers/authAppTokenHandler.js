@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 // Environment variables
 import { config } from '../../config/config.js';
 // Import the authentication utility module to sign JWT token
-import { signUserToken } from '../../utils/auth/tokenSign';
+import { signUserToken } from '../../utils/auth/tokenSign.js';
 
 
 /**
