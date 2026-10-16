@@ -37,6 +37,7 @@ export const listOneUser = async (req, res, next) => {
         success: true,
         message: 'User found successfully',
         user: response.userData,
+        authentication: res.locals.newUserToken,
       });
     }
   } catch (err) {

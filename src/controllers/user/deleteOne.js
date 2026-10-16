@@ -31,7 +31,8 @@ export const deleteOneUser = async (req, res, next) => {
     if (response.status === 'DELETED SUCCESSFULLY') {
       return res.status(200).json({
         success: true,
-        message: 'User deleted successfully'
+        message: 'User deleted successfully',
+        authentication: res.locals.newUserToken,
       });
     }
   } catch (err) {

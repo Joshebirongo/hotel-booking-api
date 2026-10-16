@@ -99,7 +99,7 @@ export class AuthenticationServices {
       const userToken = signUserToken(
         { id: userRecord.id, role: userRecord.roleData.name },
         config.authAppJwtKey,
-        '2m'
+        '10m'
       );
 
       return { status: 'logged', token: userToken };
