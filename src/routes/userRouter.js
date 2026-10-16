@@ -6,6 +6,8 @@ import { Router } from "express";
 import { checkAPIkey } from '../middlewares/apiAuthHandler.js';
 // Middleware that verifies the user JWT
 import { authAppVerifyToken} from '../middlewares/tokenHandlers/authAppTokenHandler.js';
+// Middleware that valide the user's role
+import { checkRole } from '../middlewares/chekRoleHandler.js';
 
 // -------------------------- Validator Schema ---------------------------------
 
@@ -34,7 +36,9 @@ userRouter.post(
   checkAPIkey,
   // Step 2: Verify the session token
   authAppVerifyToken,
-  // Step 3: Delegate to the controller
+  // Step 3: Verify the user role
+  checkRole(['Administrator']),
+  // Step 4: Delegate to the controller
   createOneUser
 );
 
@@ -48,7 +52,9 @@ userRouter.put(
   checkAPIkey,
   // Step 2: Verify the session token
   authAppVerifyToken,
-  // Step 3: Delegate to the controller
+  // Step 3: Verify the user role
+  checkRole(['Administrator']),
+  // Step 4: Delegate to the controller
   updateOneUser
 );
 
@@ -62,7 +68,9 @@ userRouter.put(
   checkAPIkey,
   // Step 2: Verify the session token
   authAppVerifyToken,
-  // Step 3: Delegate to the controller
+  // Step 3: Verify the user role
+  checkRole(['Administrator']),
+  // Step 4: Delegate to the controller
   updateUserPhones
 );
 
@@ -76,7 +84,9 @@ userRouter.post(
   checkAPIkey,
   // Step 2: Verify the session token
   authAppVerifyToken,
-  // Step 3: Delegate to the controller
+  // Step 3: Verify the user role
+  checkRole(['Administrator']),
+  // Step 4: Delegate to the controller
   updateLastLoginUser
 );
 
@@ -90,7 +100,9 @@ userRouter.delete(
   checkAPIkey,
   // Step 2: Verify the session token
   authAppVerifyToken,
-  // Step 3: Delegate to the controller
+  // Step 3: Verify the user role
+  checkRole(['Administrator']),
+  // Step 4: Delegate to the controller
   deleteOneUser
 );
 
@@ -104,7 +116,9 @@ userRouter.post(
   checkAPIkey,
   // Step 2: Verify the session token
   authAppVerifyToken,
-  // Step 3: Delegate to the controller
+  // Step 3: Verify the user role
+  checkRole(['Administrator']),
+  // Step 4: Delegate to the controller
   listOneUser
 );
 
@@ -118,7 +132,9 @@ userRouter.post(
   checkAPIkey,
   // Step 2: Verify the session token
   authAppVerifyToken,
-  // Step 3: Delegate to the controller
+  // Step 3: Verify the user role
+  checkRole(['Administrator']),
+  // Step 4: Delegate to the controller
   findByEmailUser
 );
 
@@ -132,7 +148,9 @@ userRouter.get(
   checkAPIkey,
   // Step 2: Verify the session token
   authAppVerifyToken,
-  // Step 3: Delegate to the controller
+  // Step 3: Verify the user role
+  checkRole(['Administrator']),
+  // Step 4: Delegate to the controller
   listAllUsers
 );
 
