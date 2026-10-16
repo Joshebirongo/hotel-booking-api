@@ -33,7 +33,8 @@ export const listOneUser = async (req, res, next) => {
       return res.status(200).json({
         success: true,
         message: 'User found successfully',
-        user: userData,
+        user: response.userData,
+        authentication: res.locals.newUserToken,
       });
     }
   } catch (err) {

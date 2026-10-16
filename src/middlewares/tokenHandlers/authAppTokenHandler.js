@@ -51,7 +51,7 @@ export const authAppVerifyToken = (req, res, next) => {
     }
 
     const userData = { id: decoded.id, role: decoded.role };
-    const newUserToken = signUserToken(userData, config.authAppJwtKey, '2m');
+    const newUserToken = signUserToken(userData, config.authAppJwtKey, '10m');
 
     res.locals.newUserToken = newUserToken;
     res.setHeader('X-Access-Token', newUserToken);
