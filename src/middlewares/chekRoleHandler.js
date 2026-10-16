@@ -25,7 +25,7 @@ export const checkRole = (roles) => {
 
     // Check if the user's role is present and authorized for this route
     if (!req.user.role || !roles.includes(req.user.role)) {
-      return res.status.json({
+      return res.status(403).json({
         error: 'Unauthorized: Insufficient permissions.'
       });
     }
