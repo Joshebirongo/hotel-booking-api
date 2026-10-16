@@ -7,7 +7,7 @@ import { checkAPIkey } from '../middlewares/apiAuthHandler.js';
 // Middleware that verifies the user JWT
 import { authAppVerifyToken} from '../middlewares/tokenHandlers/authAppTokenHandler.js';
 // Middleware that valide the user's role
-import { checkRole } from '../middlewares/chekRoleHandler.js';
+import { checkRole } from '../middlewares/checkRoleHandler.js';
 
 // -------------------------- Validator Schema ---------------------------------
 
