@@ -41,7 +41,7 @@ import {
 
 export const joiId = Joi.string().pattern(userId).messages({
   'string.base': 'The identifier must be a string.',
-  'string.pattern.base': 'The identifier must contain digits only (1 to 10 digits.',
+  'string.pattern.base': 'The identifier must contain digits only (1 to 10 digit).',
 });
 
 export const joiFirstName = Joi.string().pattern(userFirstName).messages({
