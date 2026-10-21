@@ -39,59 +39,59 @@ import {
 
 // -------------------------- Primitive Joi Types ------------------------------
 
-export const joiId = Joi.string().pattern(userId).message({
+export const joiId = Joi.string().pattern(userId).messages({
   'string.base': 'The identifier must be a string.',
-  'string.pattern.base': 'The identifier must contain digits only (1 to 10 digits.',
+  'string.pattern.base': 'The identifier must contain digits only (1 to 10 digits).',
 });
 
-export const joiFirstName = Joi.string().pattern(userFirstName).message({
+export const joiFirstName = Joi.string().pattern(userFirstName).messages({
   'string.base': 'The first name must be a string.',
   'string.pattern.base': "The first name must be between 1 and 50 characters and contain only letters and spaces.",
 });
 
-export const joiMiddleName = Joi.string().pattern(userMiddleName).allow('').message({
+export const joiMiddleName = Joi.string().pattern(userMiddleName).allow('').messages({
   'string.base': 'The middle name must be a string.',
   'string.pattern.base': "The middle name must be at most 50 characters and contain only letters and spaces.",
 });
 
-export const joiFirstLastName = Joi.string().pattern(userFirstLastName).message({
+export const joiFirstLastName = Joi.string().pattern(userFirstLastName).messages({
   'string.base': 'The first last name must be a string.',
   'string.pattern.base': "The first last name must be between 1 and 50 characters and contain only letters and spaces.",
 });
 
-export const joiSecondLastName = Joi.string().pattern(userSecondLastName).allow('').message({
+export const joiSecondLastName = Joi.string().pattern(userSecondLastName).allow('').messages({
   'string.base': 'The second last name must be a string.',
   'string.pattern.base': "The second last name must be at most 50 characters and contain only letters and spaces.",
 });
 
 // Email additionally enforce `.max(100)` to match the VARCHAR(100) column.
-export const joiEmail = Joi.string().max(100).pattern(userEmail).message({
+export const joiEmail = Joi.string().max(100).pattern(userEmail).messages({
   'string.base': 'The email must be a string.',
   'string.max': 'The email must not exceed 100 characters.',
   'string.pattern.base': 'The email must have a valid format (example@domain,com).',
 });
 
-export const joiPassword = Joi.string().max(100).pattern(userPassword).message({
+export const joiPassword = Joi.string().max(100).pattern(userPassword).messages({
   'string.base': 'The password must be a string.',
   'string.pattern.base': 'The password must be between 8 and 100 characters and contain at least one letter and one digit.',
 });
 
-export const joiRoleId = Joi.string().pattern(userRoleId).message({
+export const joiRoleId = Joi.string().pattern(userRoleId).messages({
   'string.base': 'THe role id must be a string',
   'string.pattern.base': 'The role id must contain digits only (1 to 10 digits),',
 });
 
-export const joiStatusId = Joi.string().pattern(userStatusId).message({
+export const joiStatusId = Joi.string().pattern(userStatusId).messages({
   'string.base': 'THe status id must be a string',
   'string.pattern.base': 'The status id must contain digits only (1 to 10 digits),',
 });
 
-export const joiPhoneNumber = Joi.string().pattern(userPhoneNumber).message({
+export const joiPhoneNumber = Joi.string().pattern(userPhoneNumber).messages({
   'string.base': 'The phone number must be a string.',
   'string.pattern.base': 'The phone number must be an optional "+" followed by 7 to 20 digits.',
 });
 
-export const joiPhones = Joi.array().items(joiPhoneNumber).message({
+export const joiPhones = Joi.array().items(joiPhoneNumber).messages({
   'array.base': 'The phones must be an array pg phone numbers',
 });
 
@@ -152,7 +152,7 @@ export const userSchema = {
 
   // POST /users/find-by-email (body: { email })
   // Validate userService.findByEmail(email)
-  getByEmail: joiEmail.object({
+  getByEmail: Joi.object({
     email:            joiEmail.required(),
   }),
 };
