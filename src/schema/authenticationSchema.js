@@ -27,6 +27,6 @@ export const authenticationSchema = {
     firstName:        joiFirstName.required(),
     firstLastName:    joiFirstLastName.required(),
     email:            joiEmail.required(),
-    password:         joiPassword.required(),
+    newPassword:         joiPassword.required(),
   }),
 };
