@@ -17,6 +17,8 @@ import { testConnection } from './libraries/DBConnection.js';
 import { theIPAddress, port } from './libraries/netConfig.js';
 // Main router for the API
 import routerAPI from './routes/index.js';
+// Import the GraphQL with the Apollo server instance
+import { useGraphql } from './graphql/index.js';
 // Import the configuration module
 import { config } from './config/config.js';
 // Custom error handling middlewares
@@ -61,6 +63,11 @@ api.use(cors({
   // - Retry-After / RateLimit: rate-limit info on 429 responses
   exposedHeaders: ['X-Access-Token', 'Retry-After', 'RateLimit'],
 }));
+
+// GraphQL - Layer - mounted BEFORE body parsers because Apollo Server
+// parses the request stream itself. CORS stays above so preflights are
+// answered at the edge.
+await useGraphql(api);
 
 // Middleware to parse URL-encoded data
 api.use(express.urlencoded({ extended: false }));
