@@ -64,3 +64,12 @@ export const resetPasswordAccountLimiter = rateLimit({
     `${ipKeyGenerator(req.ip)}|${normalize(req.body?.email)}`,
   handler: tooManyRequests('Too many password reset attempts. Please try again later.'),
 });
+
+// ------------------------------- GraphQL -------------------------------------
+
+export const graphqlIpLimiter = rateLimit({
+...baseOptions,
+windowMs: FIFTEEN_MINUTES,
+limit: 100,
+handler: tooManyRequests('Too many GraphQL requests. Please try again later.'),
+});
