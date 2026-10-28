@@ -110,8 +110,8 @@ export const useGraphql = async (api) => {
   // rotates the JWT into the `X-Access-Token` response header.
   api.use(
     '/api/v1/graphql',
-    graphqlIpLimiter,
-    checkAPIkey,
+    //graphqlIpLimiter,
+    //checkAPIkey,
     expressMiddleware(server, {
       context: async ({ req, res }) => buildContext({ req, res }),
     }),
