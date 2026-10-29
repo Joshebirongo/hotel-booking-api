@@ -44,6 +44,29 @@ services:
     networks:
       - hotel-booking-network
 
+  hotel-booking-api:
+    build: .
+    container_name: hotel-booking-api
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: development
+      # Inside the Docker network the DB is reached by service name
+      # and its container port, not by 127.0.0.1 / DB_PORT
+      DB_HOST: hotel-booking-db
+      DB_PORT: ${DB_CONTAINER_PORT}
+    ports:
+      - "${API_PORT}:${API_PORT}"
+    volumes:
+      # Live code: edits on the host reload the API inside the container
+      - ./src:/app/src
+      - ./nodemon.json:/app/nodemon.json
+    depends_on:
+      hotel-booking-db:
+        condition: service_healthy
+    networks:
+      - hotel-booking-network
+
 volumes:
   pg_data:
   pgadmin_data:

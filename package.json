@@ -8,22 +8,23 @@
     "Socket.io",
     "PostgreSQL"
   ],
-  "homepage": "https://github.com/Joshebirongo/hotel-booking-api#readme",
+  "homepage": "https://github.com/primetek-africa/hotel-booking-api#readme",
   "bugs": {
-    "url": "https://github.com/Joshebirongo/hotel-booking-api/issues"
+    "url": "https://github.com/primetek-africa/hotel-booking-api/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Joshebirongo/hotel-booking-api.git"
+    "url": "git+https://github.com/primetek-africa/hotel-booking-api.git"
   },
   "license": "MIT",
-  "author": "Jonathan Shebirongo <Joshebirongo>",
+  "author": "Cristian Camilo <Cristianco9>",
   "type": "module",
   "main": "src/api.js",
   "scripts": {
     "start": "node src/api.js",
+    "start:docker": "npm run migrations:run && npm run seed:run && node src/api.js",
     "dev": "nodemon src/api.js",
-    "dev-dep": "npm install && npm install nodemon morgan eslint eslint-config-prettier eslint-plugin-prettier prettier --save-dev -D",
+    "dev-dep": "npm install && npm install nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier --save-dev -D",
     "env-var": "cp ./env/.envexample ./.env && echo \"Environment variables injected\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrations:generate": "sequelize-cli migration:generate --options-path .sequelizerc.cjs --name",
@@ -50,6 +51,7 @@
     "graphql-scalars": "^2.0.1",
     "joi": "^18.3.0",
     "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.12.1",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "pg": "^8.23.0",
@@ -58,11 +60,10 @@
     "sequelize-cli": "^6.6.5"
   },
   "devDependencies": {
-    "eslint": "^10.11.0",
+    "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.6",
-    "morgan": "^1.12.1",
+    "eslint-plugin-prettier": "^5.5.7",
     "nodemon": "^3.1.14",
-    "prettier": "^3.9.9"
+    "prettier": "^3.9.10"
   }
 }
