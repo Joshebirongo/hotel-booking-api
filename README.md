@@ -129,7 +129,7 @@ or throw a Boom error. Each transport maps that outcome to its own response form
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/primetek-africa/hotel-booking-api.git
+git clone https://github.com/Joshebirongo/hotel-booking-api.git
 cd hotel-booking-api
 
 # 2. Install dependencies (add development tooling with: npm run dev-dep)
@@ -791,4 +791,4 @@ Define these collection or environment variables:
 
 Distributed under the MIT License. See [LICENSE](./LICENSE) for details.
 
-Author: Cristian Camilo
+Author: Jonathan Shebirongo
